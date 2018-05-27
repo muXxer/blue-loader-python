@@ -25,8 +25,7 @@ from binascii import hexlify
 import time
 import os
 import sys
-from .commU2F import getDongle as getDongleU2F
-from .commHTTP import getDongle as getDongleHTTP
+# muXxer: Removed U2F and HTTP imports
 import hid
 
 APDUGEN=None
@@ -186,10 +185,8 @@ def getDongle(debug=False, selectCommand=None):
 	if APDUGEN:
 		return HIDDongleHIDAPI(None, True, debug)
 
-	if not U2FKEY is None:
-		return getDongleU2F(scrambleKey=U2FKEY, debug=debug)
-	if MCUPROXY is not None:
-		return getDongleHTTP(remote_host=MCUPROXY, debug=debug)
+	# muXxer: Removed U2F and HTTP Dongles
+
 	dev = None
 	hidDevicePath = None
 	ledger = True
